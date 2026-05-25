@@ -86,6 +86,20 @@
   .stat-num span { color:var(--accent); -webkit-text-fill-color:var(--accent); }
   .stat-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; }
   @media (max-width:760px) { .about-grid { grid-template-columns:1fr; gap:48px; } }
+  /* Production (video) */
+  .production { background:#06080b; }
+  .prod-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:64px; align-items:center; }
+  .prod-text p { color:var(--muted2); font-size:16px; line-height:1.7; margin-bottom:18px; }
+  .prod-list { list-style:none; display:flex; flex-direction:column; gap:18px; margin-top:8px; }
+  .prod-list li { display:flex; gap:18px; align-items:flex-start; color:var(--muted2); font-size:15px; line-height:1.55; }
+  .prod-list li::before { content:''; flex-shrink:0; width:6px; height:6px; margin-top:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 12px var(--accent); }
+  .video-wrap { position:relative; aspect-ratio:16/10; border-radius:24px; overflow:hidden; border:1px solid var(--line); background:radial-gradient(ellipse at 30% 30%, rgba(168,255,96,.08) 0%, transparent 70%), #0a0d10; }
+  .video-wrap::after { content:''; position:absolute; inset:0; box-shadow:inset 0 0 80px rgba(168,255,96,0.08); pointer-events:none; border-radius:24px; }
+  .video-wrap video { width:100%; height:100%; object-fit:cover; display:block; }
+  .video-tag { position:absolute; top:20px; left:20px; z-index:5; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; color:var(--ink); text-transform:uppercase; padding:6px 12px; background:rgba(5,6,10,.6); backdrop-filter:blur(8px); border:1px solid var(--line); border-radius:999px; }
+  .video-tag .live { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-right:8px; transform:translateY(-1px); animation:pulse 2.2s ease infinite; }
+  @media (max-width:960px) { .prod-grid { grid-template-columns:1fr; gap:32px; } }
+
   .how-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   .how-card { padding:36px 32px; border:1px solid var(--line); border-radius:20px; background:#0a0d10; transition:transform .4s cubic-bezier(.22,1,.36,1), border-color .4s, background .4s; position:relative; overflow:hidden; }
   .how-card::before { content:''; position:absolute; left:0; right:0; top:0; height:2px; background:linear-gradient(90deg, var(--accent), transparent); opacity:0; transition:opacity .4s; }
@@ -177,6 +191,7 @@
   <div class="brand"><span class="dot"></span>KLINT · SWEDEN — RU 2026</div>
   <div class="nav-links">
     <a href="#about" data-hover>О бренде</a>
+    <a href="#production" data-hover>Производство</a>
     <a href="#how" data-hover>Как работает</a>
     <a href="#flavors" data-hover>Вкусы</a>
     <a href="#benefits" data-hover>Преимущества</a>
@@ -233,10 +248,33 @@
     </div>
   </div>
 </section>
+<section id="production" class="production">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num">02 / Как создаётся</div>
+      <h2 class="section-title">Шведский завод.<br><em>Финальная проверка перед каждой банкой.</em></h2>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-text reveal delay-1">
+        <p>Производство KLINT — это современный шведский завод с многоступенчатым контролем качества. Каждая стадия выверена технологами с десятилетиями опыта в индустрии никотиновых паучей.</p>
+        <ul class="prod-list">
+          <li>Современный завод, строгий контроль качества на каждом этапе</li>
+          <li>Инновационные технологии производства паучей без табака</li>
+          <li>Белые текстильные пакеты и чистый вкус — результат точной рецептуры</li>
+          <li>Каждая банка KLINT проходит финальную проверку перед выходом на рынок</li>
+        </ul>
+      </div>
+      <div class="video-wrap reveal delay-2" data-hover>
+        <div class="video-tag"><span class="live"></span>Vahid Nouri · COO</div>
+        <video src="video/intro.mp4" controls preload="metadata" playsinline></video>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="how" style="background:#06080b">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">02 / Как работает</div>
+      <div class="section-num">03 / Как работает</div>
       <h2 class="section-title">Три шага.<br><em>Никакого дыма.</em></h2>
     </div>
     <div class="how-grid">
@@ -261,7 +299,7 @@
 <section id="flavors" class="flavors">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">03 / Линейка вкусов</div>
+      <div class="section-num">04 / Линейка вкусов</div>
       <h2 class="section-title">Семь вкусов.<br><em>Каждый со своим характером.</em></h2>
     </div>
     <div class="flavor-grid">
@@ -313,7 +351,7 @@
 <section id="benefits">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">04 / Почему KLINT</div>
+      <div class="section-num">05 / Почему KLINT</div>
       <h2 class="section-title">Преимущества,<br>которые <em>чувствуешь.</em></h2>
     </div>
     <div class="ben-grid">
@@ -334,7 +372,7 @@
 <section id="faq" style="background:#06080b">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">05 / Вопросы</div>
+      <div class="section-num">06 / Вопросы</div>
       <h2 class="section-title">Что нужно знать <em>перед первой банкой.</em></h2>
     </div>
     <div class="faq-list">
