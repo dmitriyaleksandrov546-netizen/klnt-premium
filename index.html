@@ -450,6 +450,11 @@ gltfLoader.load('models/shaiba.glb', (gltf) => {
   model.traverse((o) => { if (o.isMesh && o.material) { o.material.envMapIntensity = 1.0; o.castShadow = false; } });
   can.add(model);
 }, undefined, (err) => { console.error('GLB load error', err); });
+// --- ориентация: лицевой этикеткой к камере ---
+const LABEL_YAW = 0;        // 0 = этикетка на камеру; крутить если не та сторона
+const BASE_TILT = 0.35;     // наклон вперёд — видно лицевую сторону, а не дно
+const spin = { y: -Math.PI*1.2 };            // стартовый заезд-разворот
+gsap.to(spin, { y: 0, duration: 2.0, ease:'expo.out' });
 const key = new THREE.DirectionalLight(0xffffff,1.2); key.position.set(3,4,5); scene.add(key);
 const fill = new THREE.DirectionalLight(0x7effd4,0.6); fill.position.set(-4,2,-2); scene.add(fill);
 const rim = new THREE.PointLight(0xa8ff60,1.4,8); rim.position.set(0,0,-3); scene.add(rim);
@@ -462,7 +467,6 @@ const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color:0xa8ff60
 scene.add(dust);
 can.rotation.x = -0.18; can.rotation.z = 0.05;
 gsap.from(can.position, { y:-1.6, duration:1.6, ease:'expo.out' });
-gsap.from(can.rotation, { y:-Math.PI*1.4, duration:2.2, ease:'expo.out' });
 gsap.from(can.scale,    { x:0.6, y:0.6, z:0.6, duration:1.6, ease:'expo.out' });
 gsap.from('.nav .brand',     { y:-20, opacity:0, duration:.9, delay:.3, ease:'expo.out' });
 gsap.from('.nav-links a',    { y:-12, opacity:0, duration:.7, delay:.45, stagger:.06, ease:'expo.out' });
@@ -475,13 +479,13 @@ gsap.from('.hero-bottom > *',{ y:20, opacity:0, duration:.7, delay:1.1, stagger:
 const ghosted = document.getElementById('heroGhost');
 const mouse = new THREE.Vector2(0,0), target = new THREE.Vector2(0,0);
 window.addEventListener('mousemove', e => { mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -((e.clientY/window.innerHeight)*2-1); });
-canvas.addEventListener('click', () => gsap.to(can.rotation, { y: can.rotation.y + Math.PI*2, duration:1.4, ease:'expo.out' }));
+canvas.addEventListener('click', () => gsap.to(spin, { y: spin.y + Math.PI*2, duration:1.4, ease:'expo.out' }));
 const clock = new THREE.Clock();
 function tick(){
   const t = clock.getElapsedTime();
   target.lerp(mouse, 0.06);
-  can.rotation.y += 0.0035;
-  can.rotation.x = -0.18 + target.y*0.18;
+  can.rotation.y = LABEL_YAW + spin.y + Math.sin(t*0.5)*0.28 + target.x*0.22;
+  can.rotation.x = BASE_TILT + target.y*0.14;
   can.position.y = Math.sin(t*0.8)*0.04;
   camera.position.x = target.x*0.5;
   camera.position.y = 0.3 + target.y*0.25;
