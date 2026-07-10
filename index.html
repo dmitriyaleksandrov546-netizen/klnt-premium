@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<title>KLINT · Premium Nicotine Pouches · Sweden</title>
-<meta name="description" content="Премиум никотиновые паучи KLINT из Швеции. Без табака. 7 вкусов мяты, льда и колы. Крепость 12–30 мг/г.">
+<title>KLINT — шведские никотиновые паучи без табака</title>
+<meta name="description" content="KLINT — оригинальные шведские никотиновые паучи без табака. 7 вкусов, крепость 12–30 мг, ровный никотин-релиз и заказ через Telegram.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:#05060a; --bg2:#0a0d10; --surface:#0d1117;
     --ink:#f3f5f4; --muted:#7a8275; --muted2:#aab2a9;
-    --accent:#a8ff60; --accent2:#7effd4;
+    --accent:#a8ff60; --accent2:#37f4d1; --cyan:#37f4d1; --gold:#d6b56d;
     --line:rgba(255,255,255,0.08); --line2:rgba(255,255,255,0.14);
   }
   *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
   html { background:var(--bg); scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--ink); font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; }
+  body { background:var(--bg); color:var(--ink); font-family:'Onest',sans-serif; -webkit-font-smoothing:antialiased; }
   body.has-cursor { cursor:none; }
   a { color:inherit; text-decoration:none; }
   img { display:block; max-width:100%; }
@@ -82,7 +82,7 @@
   .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:32px; padding-top:8px; }
   .stat { padding:32px 28px; background:linear-gradient(180deg, rgba(168,255,96,.04) 0%, rgba(0,0,0,0) 100%); border:1px solid var(--line); border-radius:18px; transition:transform .4s cubic-bezier(.22,1,.36,1), border-color .4s; }
   .stat:hover { transform:translateY(-4px); border-color:rgba(168,255,96,.35); }
-  .stat-num { font-family:'Manrope',sans-serif; font-weight:800; font-size:54px; letter-spacing:-.04em; line-height:1; margin-bottom:12px; background:linear-gradient(180deg,#fff,#9aa3a0); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stat-num { font-family:'Onest',sans-serif; font-weight:800; font-size:54px; letter-spacing:-.04em; line-height:1; margin-bottom:12px; background:linear-gradient(180deg,#fff,#9aa3a0); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .stat-num span { color:var(--accent); -webkit-text-fill-color:var(--accent); }
   .stat-label { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; }
   @media (max-width:760px) { .about-grid { grid-template-columns:1fr; gap:48px; } }
@@ -124,7 +124,9 @@
   .flavor-price { font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.05em; color:var(--accent); }
   .flavor-desc { color:var(--muted); font-size:13px; line-height:1.55; margin-bottom:18px; min-height:42px; }
   .flavor-meta { display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--muted); text-transform:uppercase; }
-  .flavor-meta b { color:var(--ink); font-family:'Manrope',sans-serif; font-weight:600; letter-spacing:0; font-size:12px; }
+  .flavor-meta b { color:var(--ink); font-family:'Onest',sans-serif; font-weight:600; letter-spacing:0; font-size:12px; }
+  .flavor-cta { margin-top:16px; display:flex; justify-content:center; align-items:center; min-height:42px; border:1px solid rgba(168,255,96,.28); border-radius:999px; color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; transition:.25s ease; }
+  .flavor-cta:hover { background:var(--accent); color:#071009; border-color:var(--accent); transform:translateY(-1px); }
   @media (max-width:960px) { .flavor-grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px) { .flavor-grid { grid-template-columns:1fr; } }
   .ben-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
@@ -171,16 +173,55 @@
   .age-box h3 { font-size:24px; font-weight:800; letter-spacing:-.02em; margin-bottom:16px; }
   .age-box p { color:var(--muted); font-size:14px; line-height:1.6; margin-bottom:32px; }
   .age-actions { display:flex; gap:12px; justify-content:center; }
+
+  .sticky-order { position:fixed; left:50%; bottom:20px; transform:translateX(-50%); z-index:35; display:flex; align-items:center; gap:14px; padding:10px 10px 10px 18px; border:1px solid rgba(255,255,255,.14); border-radius:999px; background:rgba(5,6,10,.78); backdrop-filter:blur(18px); box-shadow:0 20px 80px rgba(0,0,0,.45); font-size:12px; color:var(--muted2); }
+  .sticky-order b { color:var(--ink); font-weight:700; }
+  .sticky-order .mini-btn { display:inline-flex; align-items:center; padding:11px 16px; border-radius:999px; background:var(--accent); color:#071009; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+  @media (max-width:760px){ .sticky-order{ left:14px; right:14px; bottom:14px; transform:none; justify-content:space-between; border-radius:20px; } .sticky-order span{ max-width:180px; } }
+  .hero-trust { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 30px; }
+  .trust-pill { border:1px solid var(--line); border-radius:999px; padding:9px 12px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; color:var(--muted2); text-transform:uppercase; background:rgba(255,255,255,.025); }
+  .trust-pill i { color:var(--accent); font-style:normal; }
+  .hero-note { margin-top:14px; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; }
+  .sales-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:stretch; margin-top:56px; }
+  .sales-card { border:1px solid var(--line); border-radius:24px; background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)); padding:32px; overflow:hidden; position:relative; }
+  .sales-card::before { content:''; position:absolute; inset:auto -20% -40% -20%; height:160px; background:radial-gradient(ellipse at center, rgba(168,255,96,.16), transparent 70%); pointer-events:none; }
+  .sales-kicker { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
+  .sales-title { font-size:clamp(28px,3vw,44px); line-height:1.02; letter-spacing:-.03em; font-weight:800; margin-bottom:18px; }
+  .sales-text { color:var(--muted2); font-size:16px; line-height:1.65; max-width:720px; }
+  .metric-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+  .metric { border-top:1px solid var(--line); padding-top:16px; }
+  .metric b { display:block; font-size:26px; letter-spacing:-.04em; margin-bottom:4px; }
+  .metric span { color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; }
+  .picker { background:#06080b; }
+  .picker-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .picker-card { border:1px solid var(--line); border-radius:22px; padding:28px; background:#0a0d10; transition:.35s ease; }
+  .picker-card:hover { transform:translateY(-5px); border-color:rgba(168,255,96,.35); }
+  .picker-card h3 { font-size:22px; margin-bottom:14px; letter-spacing:-.02em; }
+  .picker-card p { color:var(--muted); line-height:1.6; font-size:14px; margin-bottom:18px; }
+  .picker-card .tag { display:inline-flex; color:#071009; background:var(--accent); border-radius:999px; padding:7px 10px; font-size:10px; font-family:'JetBrains Mono',monospace; letter-spacing:.14em; text-transform:uppercase; }
+  .order-block { padding:120px 0; background:radial-gradient(ellipse at 50% 0%, rgba(168,255,96,.10), transparent 60%), #05060a; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .order-panel { border:1px solid rgba(255,255,255,.12); border-radius:32px; padding:48px; background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.015)); display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center; }
+  .order-panel h2 { font-size:clamp(38px,5vw,72px); line-height:.94; letter-spacing:-.045em; font-weight:300; margin-bottom:22px; }
+  .order-panel h2 em { font-style:normal; font-weight:900; color:var(--accent); }
+  .order-panel p { color:var(--muted2); font-size:17px; line-height:1.65; margin-bottom:28px; }
+  .order-steps { display:grid; gap:14px; }
+  .order-step { display:flex; gap:16px; align-items:flex-start; border:1px solid var(--line); border-radius:18px; padding:18px; background:rgba(0,0,0,.18); }
+  .order-step b { color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.2em; min-width:38px; }
+  .order-step span { color:var(--muted2); line-height:1.5; }
+  .legal-note { color:var(--muted); font-size:12px; line-height:1.5; margin-top:16px; }
+  @media (max-width:960px){ .sales-grid,.order-panel{grid-template-columns:1fr;} .picker-grid{grid-template-columns:1fr;} .metric-row{grid-template-columns:1fr;} }
+
 </style>
 </head>
 <body class="has-cursor">
 <div class="grain"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-dot" id="cursorDot"></div>
+<div class="sticky-order"><span><b>KLINT 18+</b> · 7 вкусов · заказ в Telegram</span><a class="mini-btn" href="https://t.me/klint_russia" target="_blank" rel="noopener">Заказать</a></div>
 <div class="age-gate" id="ageGate" aria-hidden="true">
   <div class="age-box">
     <h3>Вам исполнилось 18 лет?</h3>
-    <p>KLINT — продукция с содержанием никотина. Продажа лицам младше 18 лет запрещена.</p>
+    <p>KLINT содержит никотин. Материалы предназначены только для совершеннолетних. Продажа лицам младше 18 лет запрещена.</p>
     <div class="age-actions">
       <button class="btn primary" data-hover id="ageYes">Да, мне 18+</button>
       <a class="btn" href="https://google.com" data-hover>Нет</a>
@@ -188,14 +229,14 @@
   </div>
 </div>
 <nav class="nav">
-  <div class="brand"><span class="dot"></span>KLINT · SWEDEN — RU 2026</div>
+  <div class="brand"><span class="dot"></span>KLINT · ORIGINAL SWEDEN</div>
   <div class="nav-links">
     <a href="#about" data-hover>О бренде</a>
     <a href="#production" data-hover>Производство</a>
     <a href="#how" data-hover>Как работает</a>
     <a href="#flavors" data-hover>Вкусы</a>
-    <a href="#benefits" data-hover>Преимущества</a>
-    <a href="#faq" data-hover>FAQ</a>
+    <a href="#picker" data-hover>Подбор</a>
+    <a href="#order" data-hover>Заказать</a>
   </div>
 </nav>
 <section class="hero">
@@ -205,63 +246,88 @@
     <div style="display:grid;align-items:end">
       <div class="hero-ghost" id="heroGhost">KLINT</div>
       <div class="hero-copy">
-        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Premium pouches&nbsp;·&nbsp;0% tobacco · made in sweden</div>
-        <h1 class="h1">Настоящая <em>премиум-база</em><br>теперь в России.</h1>
-        <p class="lede">Никотиновые паучи KLINT. Сделано в Швеции. Семь вкусов мяты, льда и колы. Без табака. Без компромиссов.</p>
+        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Original Sweden&nbsp;·&nbsp;0% tobacco · smooth release</div>
+        <h1 class="h1">Шведский <em>стандарт</em><br>без табака.</h1>
+        <p class="lede">KLINT — оригинальные никотиновые паучи из Швеции: ровный никотин-релиз, чистый вкус и крепость под твой ритм. Без дыма. Без запаха. Без табака.</p>
+        <div class="hero-trust"><span class="trust-pill"><i>7</i> вкусов</span><span class="trust-pill"><i>12–30</i> мг</span><span class="trust-pill"><i>0%</i> табака</span><span class="trust-pill">оригинал 🇸🇪</span></div>
         <div class="cta-row">
-          <a class="btn primary" href="#flavors" data-hover>Выбрать вкус <span class="arrow"></span></a>
-          <a class="btn" href="#about" data-hover>О бренде</a>
+          <a class="btn primary" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать в Telegram <span class="arrow"></span></a>
+          <a class="btn" href="#picker" data-hover>Подобрать вкус</a>
         </div>
+        <div class="hero-note">18+ · содержит никотин · доставка по России через официальный Telegram</div>
       </div>
     </div>
     <div class="hero-bottom">
-      <div>v1.0 · WebGL · 60fps target</div>
-      <div class="scroll-hint">Прокрути вниз &nbsp;<span class="bar"></span></div>
-      <div>Frame · 0001 / 0007</div>
+      <div>Original Swedish brand</div>
+      <div class="scroll-hint">Посмотри линейку &nbsp;<span class="bar"></span></div>
+      <div>Order · @klint_russia</div>
     </div>
   </div>
 </section>
 <div class="marquee">
   <div class="marquee-track">
-    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 6–20 MG · 7 FLAVORS · <i>PREMIUM BASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 6–20 MG · 7 FLAVORS · <i>PREMIUM BASE</i> · SINCE 2018 · </span>
-    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 6–20 MG · 7 FLAVORS · <i>PREMIUM BASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 6–20 MG · 7 FLAVORS · <i>PREMIUM BASE</i> · SINCE 2018 · </span>
+    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>SMOOTH RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>SMOOTH RELEASE</i> · SINCE 2018 · </span>
+    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>SMOOTH RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>SMOOTH RELEASE</i> · SINCE 2018 · </span>
   </div>
 </div>
 <section id="about">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">01 / О бренде</div>
-      <h2 class="section-title">Мировой бренд<br>никотиновых паучей<br><em>из Швеции.</em></h2>
+      <h2 class="section-title">Не просто банка.<br>Другой уровень<br><em>контроля.</em></h2>
     </div>
     <div class="about-grid">
       <div class="about-text reveal delay-1">
-        <p><strong>KLINT</strong> — премиум никотиновые паучи, созданные в Швеции для динамичного образа жизни. Бренд с международной репутацией, который пришёл в Россию официально и без компромиссов.</p>
-        <p>Каждый пауч — это маленькая подушечка с никотином и натуральными ароматами. <strong>Без табака.</strong> Без дыма. Без неприятного запаха. Только чистый эффект и точно дозированная крепость.</p>
-        <p>Семь линеек вкусов на основе мяты, льда и колы — для тех, кто разбирается в качестве и не готов мириться с подделками.</p>
+        <p><strong>KLINT</strong> — шведские никотиновые паучи для тех, кто выбирает предсказуемое ощущение, чистый вкус и аккуратный формат без дыма.</p>
+        <p>Главная разница — не в банке, а в том, <strong>как работает продукт</strong>: никотин высвобождается ровнее, без резких скачков и ощущения перегруза.</p>
+        <p>Семь вкусов закрывают разные сценарии: мягкая ежедневная мята, яркий вкус cola lime, яблоко с холодом и максимальная ледяная свежесть.</p>
       </div>
       <div class="about-stats">
         <div class="stat reveal delay-1"><div class="stat-num">7</div><div class="stat-label">Вкусов</div></div>
         <div class="stat reveal delay-2"><div class="stat-num"><span>0%</span></div><div class="stat-label">Табака</div></div>
-        <div class="stat reveal delay-2"><div class="stat-num">6–20</div><div class="stat-label">Мг никотина</div></div>
-        <div class="stat reveal delay-3"><div class="stat-num">100%</div><div class="stat-label">Швеция</div></div>
+        <div class="stat reveal delay-2"><div class="stat-num">12–30</div><div class="stat-label">Мг никотина</div></div>
+        <div class="stat reveal delay-3"><div class="stat-num">🇸🇪</div><div class="stat-label">Оригинал</div></div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="sales-proof">
+  <div class="wrap">
+    <div class="sales-grid">
+      <div class="sales-card reveal">
+        <div class="sales-kicker">Почему это чувствуется</div>
+        <div class="sales-title">Ровный никотин-релиз вместо резкого пика.</div>
+        <p class="sales-text">У большинства паучей ощущение приходит резко: сначала перегруз, потом быстрый спад. KLINT сделан иначе — подача ощущается стабильнее и чище, поэтому продукт легче контролировать от начала до конца.</p>
+        <div class="metric-row">
+          <div class="metric"><b>30–60</b><span>минут работы</span></div>
+          <div class="metric"><b>0%</b><span>табака</span></div>
+          <div class="metric"><b>7</b><span>профилей вкуса</span></div>
+        </div>
+      </div>
+      <div class="sales-card reveal delay-1">
+        <div class="sales-kicker">Кому зайдёт</div>
+        <div class="sales-title">Тем, кто устал от жжения, химии и случайного выбора.</div>
+        <p class="sales-text">Если паучи “не зашли”, часто проблема не в формате, а в уровне продукта. Начни с правильной крепости и вкуса — и первое впечатление будет другим.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="production" class="production">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">02 / Как создаётся</div>
-      <h2 class="section-title">Шведский завод.<br><em>Финальная проверка перед каждой банкой.</em></h2>
+      <h2 class="section-title">Шведское производство.<br><em>Контроль партии — не обещание, а система.</em></h2>
     </div>
     <div class="prod-grid">
       <div class="prod-text reveal delay-1">
-        <p>Производство KLINT — это современный шведский завод с многоступенчатым контролем качества. Каждая стадия выверена технологами с десятилетиями опыта в индустрии никотиновых паучей.</p>
+        <p>KLINT производится на современном предприятии Habit Factory: от сырья до готовой банки каждый этап проходит контроль. Поэтому вкус, пакеты и ощущение не должны зависеть от “повезло с партией”.</p>
         <ul class="prod-list">
-          <li>Современный завод, строгий контроль качества на каждом этапе</li>
-          <li>Инновационные технологии производства паучей без табака</li>
-          <li>Белые текстильные пакеты и чистый вкус — результат точной рецептуры</li>
-          <li>Каждая банка KLINT проходит финальную проверку перед выходом на рынок</li>
+          <li>Контроль сырья, состава и готовой партии</li>
+          <li>Белые slim-пакеты без табачного листа</li>
+          <li>Ровная влажность, чистая ароматика и стабильная подача</li>
+          <li>Оригинальный шведский продукт, представленный в России</li>
         </ul>
       </div>
       <div class="video-wrap reveal delay-2" data-hover>
@@ -275,75 +341,97 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">03 / Как работает</div>
-      <h2 class="section-title">Три шага.<br><em>Никакого дыма.</em></h2>
+      <h2 class="section-title">Как ощущается KLINT.<br><em>Чисто, ровно, незаметно.</em></h2>
     </div>
     <div class="how-grid">
       <div class="how-card reveal delay-1">
         <div class="how-num">01</div>
-        <div class="how-title">Положи под губу</div>
-        <div class="how-desc">Достань один пауч из банки и помести под верхнюю или нижнюю губу. Без жжения, без раздражения — мягкая текстура и нейтральный pH.</div>
+        <div class="how-title">Без дыма и запаха</div>
+        <div class="how-desc">Формат не требует огня, дыма или пауз “на перекур”. Использование остаётся аккуратным и незаметным.</div>
       </div>
       <div class="how-card reveal delay-2">
         <div class="how-num">02</div>
-        <div class="how-title">Почувствуй вкус</div>
-        <div class="how-desc">Через 30–60 секунд активируется аромат и никотин. Эффект мягко нарастает, дозировка контролируется точностью производства.</div>
+        <div class="how-title">Вкус раскрывается постепенно</div>
+        <div class="how-desc">Мята, лёд, яблоко или cola lime раскрываются без химического послевкусия и лишней агрессии.</div>
       </div>
       <div class="how-card reveal delay-3">
         <div class="how-num">03</div>
-        <div class="how-title">Используй 30–60 мин</div>
-        <div class="how-desc">Один пауч работает 30–60 минут в зависимости от крепости и физиологии. Использованный — в специальный отсек на крышке банки.</div>
+        <div class="how-title">Контроль от начала до конца</div>
+        <div class="how-desc">Ровный никотин-релиз помогает избежать резкого пика и быстрого провала. Ощущение остаётся управляемым.</div>
       </div>
     </div>
   </div>
 </section>
+
+<section id="picker" class="picker">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-num">04 / Быстрый подбор</div>
+      <h2 class="section-title">Выбери не банку.<br><em>Выбери ощущение.</em></h2>
+    </div>
+    <div class="picker-grid">
+      <div class="picker-card reveal delay-1"><h3>На каждый день</h3><p>Мягкая и чистая свежесть без перегруза. Начни с POLAR MINT 12 мг или FREEZE MINT 16 мг.</p><span class="tag">мягкий старт</span></div>
+      <div class="picker-card reveal delay-2"><h3>Баланс вкуса и силы</h3><p>Если хочется заметнее: APPLE MINT или ARCTIC MINT 20 мг. Вкус есть, но он не забивает ощущение.</p><span class="tag">золотая середина</span></div>
+      <div class="picker-card reveal delay-3"><h3>Максимальный холод</h3><p>Для тех, кто любит выраженную мяту и сильное ощущение: AVALANCHE 25 мг или ALASKAN 30 мг.</p><span class="tag">самый холод</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="flavors" class="flavors">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">04 / Линейка вкусов</div>
-      <h2 class="section-title">Семь вкусов.<br><em>Каждый со своим характером.</em></h2>
+      <div class="section-num">05 / Линейка вкусов</div>
+      <h2 class="section-title">Семь вкусов.<br><em>Под разные сценарии.</em></h2>
     </div>
     <div class="flavor-grid">
       <article class="flavor-card reveal delay-1" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/apple-mint.png" alt="Apple Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Apple Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Сочное яблоко и арктическая мята. Свежесть с лёгкой кислинкой и долгим послевкусием.</div>
+        <div class="flavor-desc">Яблоко + мята: сладко-свежий баланс без кислоты. Хороший выбор, если обычная мята кажется скучной.</div>
         <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Apple Mint</a>
       </article>
       <article class="flavor-card reveal delay-1" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/arctic-mint.png" alt="Arctic Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Arctic Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Ледяная мята с эффектом холода. Резкий, прозрачный вкус как глоток северного воздуха.</div>
+        <div class="flavor-desc">Баланс свежести и крепости. Выраженный холод без ощущения перегруза — универсальный daily-вариант.</div>
         <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Arctic Mint</a>
       </article>
       <article class="flavor-card reveal delay-2" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/avalanche-mint.png" alt="Avalanche Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Avalanche Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Лавина мяты с ментолом высокой концентрации. Для тех, кому нужен максимум прохлады.</div>
-        <div class="flavor-meta"><span>Крепость</span><b>20 мг · 6/6</b></div>
+        <div class="flavor-desc">Крепкий холод и плотная мята. Для опытных пользователей, которым нужен максимум прохлады.</div>
+        <div class="flavor-meta"><span>Крепость</span><b>25 мг · 6/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Avalanche</a>
       </article>
       <article class="flavor-card reveal delay-2" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/cola-lime.png" alt="Cola Lime" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Cola Lime</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Классическая кола с зелёным лаймом. Сладкий ностальгический вкус и цитрусовая кислинка.</div>
-        <div class="flavor-meta"><span>Крепость</span><b>20 мг · 4/6</b></div>
+        <div class="flavor-desc">Кола с лаймом: яркий, необычный вкус с характером. Некрепкий профиль для тех, кто хочет вкус + свежесть.</div>
+        <div class="flavor-meta"><span>Крепость</span><b>16 мг · 4/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Cola Lime</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/freeze-mint.png" alt="Freeze Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Freeze Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Мята с эффектом заморозки. Чистая, прозрачная свежесть без сладких нот — баланс для гурманов.</div>
-        <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
+        <div class="flavor-desc">Бодрящая мята без перегруза. Чистая, прозрачная свежесть на каждый день.</div>
+        <div class="flavor-meta"><span>Крепость</span><b>16 мг · 4/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Freeze</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/polar-mint.png" alt="Polar Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Polar Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Полярная мята с эвкалиптом. Глубокий, многослойный вкус с ноткой хвои и арктического холода.</div>
-        <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
+        <div class="flavor-desc">База линейки: мягкий холод, ровное ощущение и вкус, который не надоедает.</div>
+        <div class="flavor-meta"><span>Крепость</span><b>12 мг · 3/6</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Polar</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/alaskan-mint.png" alt="Alaskan Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Alaskan Mint</div><div class="flavor-price">550 ₽</div></div>
-        <div class="flavor-desc">Аляскинская мята — самый мощный профиль. Экстремальная свежесть и длительный пост-эффект.</div>
-        <div class="flavor-meta"><span>Крепость</span><b>20 мг · 6/6</b></div>
+        <div class="flavor-desc">Самый жёсткий холод в линейке. Для стойких пользователей и максимального ощущения.</div>
+        <div class="flavor-meta"><span>Крепость</span><b>30 мг · 7/7</b></div>
+        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Alaskan</a>
       </article>
     </div>
   </div>
@@ -351,37 +439,48 @@
 <section id="benefits">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">05 / Почему KLINT</div>
-      <h2 class="section-title">Преимущества,<br>которые <em>чувствуешь.</em></h2>
+      <div class="section-num">06 / Почему KLINT</div>
+      <h2 class="section-title">Причины выбрать<br><em>оригинальный KLINT.</em></h2>
     </div>
     <div class="ben-grid">
-      <div class="ben-card reveal delay-1"><div class="ben-icon">01</div><div class="ben-title">Без табака</div><div class="ben-desc">Только синтетический никотин и натуральные ароматы. Без смолы, без табачного запаха, без жёлтых зубов.</div></div>
-      <div class="ben-card reveal delay-1"><div class="ben-icon">02</div><div class="ben-title">Точная дозировка</div><div class="ben-desc">Швейцарская точность каждого пауча. Знаешь сколько берёшь — никаких сюрпризов.</div></div>
-      <div class="ben-card reveal delay-2"><div class="ben-icon">03</div><div class="ben-title">Свежий вкус</div><div class="ben-desc">Никаких химических послевкусий. Только премиум-ароматы, выверенные шведскими технологами.</div></div>
-      <div class="ben-card reveal delay-2"><div class="ben-icon">04</div><div class="ben-title">Discreet</div><div class="ben-desc">Незаметно. Без дыма, без запаха изо рта. Можно использовать на встрече, в самолёте, где угодно.</div></div>
+      <div class="ben-card reveal delay-1"><div class="ben-icon">01</div><div class="ben-title">Ровная подача</div><div class="ben-desc">Никотин-релиз ощущается стабильнее: без резкого старта, перегруза и быстрого провала.</div></div>
+      <div class="ben-card reveal delay-1"><div class="ben-icon">02</div><div class="ben-title">Без табака</div><div class="ben-desc">Нет дыма и табачного листа. Формат остаётся чистым, компактным и незаметным.</div></div>
+      <div class="ben-card reveal delay-2"><div class="ben-icon">03</div><div class="ben-title">Оригинал из Швеции</div><div class="ben-desc">Продукт из страны, которая сформировала культуру никотиновых паучей.</div></div>
+      <div class="ben-card reveal delay-2"><div class="ben-icon">04</div><div class="ben-title">Выбор под себя</div><div class="ben-desc">От мягкой базы 12 мг до максимального холода 30 мг — можно подобрать под свой опыт.</div></div>
     </div>
   </div>
 </section>
-<section class="cta-banner">
+<section id="order" class="order-block">
   <div class="wrap">
-    <h2 class="reveal">Готов попробовать <em>настоящую базу?</em></h2>
-    <p class="reveal delay-1">Семь вкусов KLINT с доставкой по всей России. Прямо от официального дистрибьютора.</p>
-    <div class="reveal delay-2"><a href="#flavors" class="btn primary" data-hover>Выбрать вкус <span class="arrow"></span></a></div>
+    <div class="order-panel">
+      <div>
+        <h2>Готов выбрать <em>свою банку?</em></h2>
+        <p>Напиши в Telegram — подберём вкус и крепость, подскажем наличие и условия доставки. Без длинных форм и лишних шагов.</p>
+        <a href="https://t.me/klint_russia" target="_blank" rel="noopener" class="btn primary" data-hover>Заказать в Telegram <span class="arrow"></span></a>
+        <div class="legal-note">18+. Продукция содержит никотин и предназначена только для совершеннолетних потребителей.</div>
+      </div>
+      <div class="order-steps">
+        <div class="order-step"><b>01</b><span>Выбираешь вкус или пишешь, какое ощущение нужно: мягко, баланс, максимальный холод.</span></div>
+        <div class="order-step"><b>02</b><span>Получаешь рекомендацию по крепости и актуальное наличие.</span></div>
+        <div class="order-step"><b>03</b><span>Оформляешь заказ и получаешь оригинальный KLINT удобным способом.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 <section id="faq" style="background:#06080b">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">06 / Вопросы</div>
-      <h2 class="section-title">Что нужно знать <em>перед первой банкой.</em></h2>
+      <div class="section-num">07 / Вопросы</div>
+      <h2 class="section-title">Коротко — чтобы <em>выбрать правильно.</em></h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal" data-hover><div class="faq-q">Что такое никотиновый пауч и чем он отличается от снюса?<span class="faq-toggle"></span></div><div class="faq-a">Никотиновый пауч — это маленькая подушечка с никотином и натуральными ароматами без содержания табака. В отличие от классического снюса, здесь нет табачного листа — только синтетический никотин и пищевые компоненты. Использование незаметно, не оставляет запаха.</div></div>
-      <div class="faq-item reveal" data-hover><div class="faq-q">Какую крепость выбрать?<span class="faq-toggle"></span></div><div class="faq-a">Если вы переходите с обычных сигарет — начните с 12–16 мг. Опытным пользователям подходят 20 мг. Маркировка 4/6, 5/6, 6/6 показывает субъективную крепость по нашей шкале — от выраженной до экстремальной.</div></div>
+      <div class="faq-item reveal" data-hover><div class="faq-q">Какую крепость выбрать?<span class="faq-toggle"></span></div><div class="faq-a">Если нужен мягкий старт — POLAR MINT 12 мг или FREEZE/COLA LIME 16 мг. Если нужен баланс — APPLE/ARCTIC 20 мг. Для опытных пользователей — AVALANCHE 25 мг или ALASKAN 30 мг.</div></div>
       <div class="faq-item reveal" data-hover><div class="faq-q">Сколько работает один пауч?<span class="faq-toggle"></span></div><div class="faq-a">В среднем 30–60 минут. Точное время зависит от крепости пауча и индивидуальной физиологии. Эффект мягко нарастает в первые минуты и постепенно сходит к концу использования.</div></div>
-      <div class="faq-item reveal" data-hover><div class="faq-q">Это легально в России?<span class="faq-toggle"></span></div><div class="faq-a">Да. KLINT поставляется в Россию официально, продаётся только лицам старше 18 лет, имеет все необходимые сертификаты соответствия. Мы — официальный дистрибьютор шведского бренда.</div></div>
+      <div class="faq-item reveal" data-hover><div class="faq-q">Это легально в России?<span class="faq-toggle"></span></div><div class="faq-a">KLINT представлен как оригинальный шведский бренд. Продажа и коммуникация — только для лиц 18+. По документам и наличию лучше уточнить напрямую у @klint_russia.</div></div>
       <div class="faq-item reveal" data-hover><div class="faq-q">Как и где хранить?<span class="faq-toggle"></span></div><div class="faq-a">Закрытая банка хранится при комнатной температуре до 18 месяцев. После вскрытия — лучше хранить в холодильнике для сохранения аромата. Использованные паучи отправляются в отсек на крышке банки и утилизируются как обычный мусор.</div></div>
-      <div class="faq-item reveal" data-hover><div class="faq-q">Доставка и оплата?<span class="faq-toggle"></span></div><div class="faq-a">Доставляем по всей России курьером и постаматами. Оплата картой, СБП или при получении. Контакты для заказа — внизу страницы.</div></div>
+      <div class="faq-item reveal" data-hover><div class="faq-q">Как заказать KLINT в России?<span class="faq-toggle"></span></div><div class="faq-a">Напишите в официальный Telegram <a href="https://t.me/klint_russia" target="_blank" rel="noopener">@klint_russia</a>. Подскажем наличие вкусов, условия доставки и оплаты.</div></div>
+      <div class="faq-item reveal" data-hover><div class="faq-q">Доставка и оплата?<span class="faq-toggle"></span></div><div class="faq-a">Напишите в Telegram @klint_russia — подскажем наличие, актуальные условия и удобный способ получения.</div></div>
     </div>
   </div>
 </section>
@@ -390,11 +489,11 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">KLINT<span>.</span></div>
-        <div class="foot-tag">Премиум никотиновые паучи из Швеции. Официальный дистрибьютор в России. С 2026 года.</div>
+        <div class="foot-tag">Оригинальные шведские никотиновые паучи без табака. 18+.</div>
       </div>
       <div class="foot-col"><h4>Продукт</h4><ul><li><a href="#flavors" data-hover>Вкусы</a></li><li><a href="#how" data-hover>Как работает</a></li><li><a href="#benefits" data-hover>Преимущества</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
-      <div class="foot-col"><h4>Компания</h4><ul><li><a href="#about" data-hover>О бренде</a></li><li><a href="#" data-hover>Доставка</a></li><li><a href="#" data-hover>Контакты</a></li><li><a href="#" data-hover>Гарантии</a></li></ul></div>
-      <div class="foot-col"><h4>Социальные</h4><ul><li><a href="#" data-hover>Telegram</a></li><li><a href="#" data-hover>Instagram</a></li><li><a href="#" data-hover>VK</a></li></ul></div>
+      <div class="foot-col"><h4>Компания</h4><ul><li><a href="#about" data-hover>О бренде</a></li><li><a href="#order" data-hover>Заказ</a></li><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Контакты</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
+      <div class="foot-col"><h4>Заказ</h4><ul><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Telegram: @klint_russia</a></li><li><a href="#picker" data-hover>Подобрать вкус</a></li><li><a href="#faq" data-hover>Вопросы 18+</a></li></ul></div>
     </div>
     <div class="foot-bottom">
       <div>© 2026 KLINT Russia · Все права защищены</div>
@@ -420,7 +519,7 @@ let cx=0, cy=0, rx=0, ry=0;
 window.addEventListener('mousemove', e => { cx=e.clientX; cy=e.clientY; dotEl.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`; });
 function followRing(){ rx += (cx-rx)*0.18; ry += (cy-ry)*0.18; ringEl.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(followRing); }
 followRing();
-document.querySelectorAll('[data-hover], .btn, .nav-links a, .flavor-card, .faq-item').forEach(el => {
+document.querySelectorAll('[data-hover], .btn, .nav-links a, .flavor-card, .faq-item, .mini-btn').forEach(el => {
   el.addEventListener('mouseenter', ()=> ringEl.classList.add('hover'));
   el.addEventListener('mouseleave', ()=> ringEl.classList.remove('hover'));
 });
