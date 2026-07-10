@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>KLINT — шведские никотиновые паучи без табака</title>
-<meta name="description" content="KLINT — оригинальные шведские никотиновые паучи без табака. 7 вкусов, крепость 12–30 мг, ровный никотин-релиз и заказ через Telegram.">
+<meta name="description" content="KLINT — шведские никотиновые паучи без табака. Ледяные вкусы, понятная крепость и заказ через официальный Telegram.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
   .nav-links a:hover { opacity:1; border-color:rgba(78,231,255,.22); background:rgba(78,231,255,.06); }
   .nav-links a:hover::after { width:100%; }
   @media (max-width:760px) { .nav { top:auto; left:10px; right:10px; bottom:calc(92px + env(safe-area-inset-bottom)); z-index:46; padding:8px; display:block; border:1px solid rgba(78,231,255,.16); border-radius:22px; background:rgba(5,8,12,.86); box-shadow:0 18px 70px rgba(0,0,0,.42); } .nav .brand { display:none; } .nav-links { display:flex; width:100%; overflow-x:auto; gap:6px; scrollbar-width:none; } .nav-links::-webkit-scrollbar{display:none;} .nav-links a{white-space:nowrap; font-size:10px; padding:9px 11px; border-color:rgba(255,255,255,.07); background:rgba(255,255,255,.035);} }
-  .hero { position:relative; height:100vh; min-height:680px; overflow:hidden; isolation:isolate; background:radial-gradient(ellipse at 64% 24%, rgba(55,244,209,.10), transparent 42%), radial-gradient(ellipse at 36% 18%, rgba(78,231,255,.055), transparent 38%), #05060a; }
+  .hero { position:relative; z-index:4; height:100vh; min-height:680px; overflow:hidden; isolation:isolate; background:transparent; }
   .hero::after { content:''; position:absolute; inset:0; z-index:3; pointer-events:none; background:linear-gradient(90deg, rgba(5,6,10,.88) 0%, rgba(5,6,10,.68) 25%, rgba(5,6,10,.20) 50%, rgba(5,6,10,.06) 100%); }
   #hero-canvas { position:fixed; inset:0; z-index:2; background:#05060a; opacity:1; transition:opacity .28s ease; pointer-events:auto; }
   #hero-canvas.is-hidden { opacity:0 !important; pointer-events:none; }
@@ -182,8 +182,6 @@
   .flavor-desc { color:var(--muted); font-size:13px; line-height:1.55; margin-bottom:18px; min-height:42px; }
   .flavor-meta { display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--line); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--muted); text-transform:uppercase; }
   .flavor-meta b { color:var(--ink); font-family:'Onest',sans-serif; font-weight:600; letter-spacing:0; font-size:12px; }
-  .flavor-cta { margin-top:16px; display:flex; justify-content:center; align-items:center; min-height:42px; border:1px solid rgba(78,231,255,.28); border-radius:999px; color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; transition:.25s ease; }
-  .flavor-cta:hover { background:var(--accent); color:#031015; border-color:var(--accent); transform:translateY(-1px); }
   @media (max-width:960px) { .flavor-grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px) { .flavor-grid { grid-template-columns:1fr; } }
   .ben-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
@@ -304,18 +302,18 @@
   }
   @media (max-width:760px) {
     .wrap { padding:0 20px; }
-    .nav { padding:16px 20px; }
-    .hero { min-height:720px; height:100svh; }
-    .hero-hud { padding:82px 20px 92px; }
-    .hero-copy { max-width:100%; transform:none; }
-    .eyebrow { font-size:9px; letter-spacing:.28em; margin-bottom:12px; }
-    .h1 { font-size:clamp(42px,13vw,58px); line-height:.94; margin-bottom:16px; color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.85); }
+    .hero { min-height:100svh; height:100svh; }
+    .hero::after { background:linear-gradient(180deg, rgba(5,6,10,.05) 0%, rgba(5,6,10,.18) 42%, rgba(5,6,10,.86) 68%, #05060a 100%); }
+    .hero-hud { padding:64px 20px 178px; display:block; }
+    .hero-copy { position:absolute; left:20px; right:20px; bottom:190px; max-width:350px; transform:none; z-index:20; padding:16px 16px 18px; border-left:1px solid rgba(78,231,255,.32); border-radius:18px; background:linear-gradient(90deg, rgba(5,8,12,.90), rgba(5,8,12,.52) 78%, transparent); backdrop-filter:blur(10px); }
+    .eyebrow { font-size:8px; letter-spacing:.24em; margin-bottom:9px; }
+    .h1 { font-size:clamp(34px,10.6vw,44px); line-height:.93; margin-bottom:10px; color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.9); }
     .h1 em { background:none; color:#f7f9f6; -webkit-text-fill-color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.9); }
-    .lede { font-size:13px; line-height:1.55; max-width:330px; margin-bottom:16px; color:#aeb7ad; text-shadow:0 8px 22px rgba(0,0,0,.85); }
-    .cta-row { gap:10px; }
-    .btn { padding:13px 16px; font-size:10px; letter-spacing:.11em; }
-    .hero-trust { gap:7px; margin:14px 0 18px; }
-    .trust-pill { font-size:8px; padding:8px 9px; letter-spacing:.11em; }
+    .lede { font-size:12px; line-height:1.42; max-width:290px; margin-bottom:13px; color:#c3ccc9; text-shadow:0 8px 22px rgba(0,0,0,.9); }
+    .cta-row { gap:9px; }
+    .btn { padding:12px 14px; font-size:9px; letter-spacing:.10em; }
+    .hero .cta-row .btn:not(.primary) { display:none; }
+    .hero-trust { display:none; }
     .hero-note { display:none; }
     .marquee { margin-top:-18px; padding:13px 0; }
     .marquee-track { font-size:10px; letter-spacing:.22em; }
@@ -325,6 +323,7 @@
     .stat { padding:24px 22px; }
     .stat-num { font-size:42px; }
     .sales-card, .picker-card, .flavor-card { border-radius:18px; padding:22px; }
+    .flavor-desc { min-height:auto; }
     .order-block { padding:84px 0; }
     .order-panel { padding:28px 20px; border-radius:22px; gap:26px; }
     .order-panel h2 { font-size:clamp(38px,12vw,54px); }
@@ -338,8 +337,8 @@
     .foot-bottom { flex-direction:column; align-items:flex-start; gap:14px; line-height:1.5; }
   }
   @media (max-width:420px) {
-    .hero { min-height:700px; }
-    .h1 { font-size:40px; }
+    .hero-copy { bottom:178px; max-width:330px; }
+    .h1 { font-size:36px; }
     .btn.secondary { display:none; }
     .sticky-order span { max-width:160px; }
   }
@@ -354,7 +353,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="hero-canvas"></canvas>
-<div class="sticky-order"><span><b>KLINT 18+</b> · 7 вкусов · заказ в Telegram</span><a class="mini-btn" href="https://t.me/klint_russia" target="_blank" rel="noopener">Заказать</a></div>
+<div class="sticky-order"><span><b>KLINT 18+</b> · официальный Telegram</span><a class="mini-btn" href="https://t.me/klint_russia" target="_blank" rel="noopener">Заказать</a></div>
 <div class="age-gate" id="ageGate" aria-hidden="true">
   <div class="age-box">
     <h3>Вам исполнилось 18 лет?</h3>
@@ -383,15 +382,15 @@
     <div style="display:grid;align-items:end">
       <div class="hero-ghost" id="heroGhost">KLINT</div>
       <div class="hero-copy">
-        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Original Sweden&nbsp;·&nbsp;0% tobacco</div>
+        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Ice taste&nbsp;·&nbsp;slim format</div>
         <h1 class="h1">Шведский <em>стандарт</em><br>без табака.</h1>
-        <p class="lede">Шведские никотиновые паучи без табака. Выбери крепость, вкус и закажи в Telegram.</p>
-        <div class="hero-trust"><span class="trust-pill"><i>7</i> вкусов</span><span class="trust-pill"><i>12–30</i> мг</span><span class="trust-pill"><i>0%</i> табака</span><span class="trust-pill">оригинал 🇸🇪</span></div>
+        <p class="lede">Ледяной вкус, slim-формат и понятная крепость.</p>
+        <div class="hero-trust"><span class="trust-pill"><i>slim</i> формат</span><span class="trust-pill"><i>ice</i> taste</span><span class="trust-pill">Swedish quality</span></div>
         <div class="cta-row">
           <a class="btn primary" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать в Telegram <span class="arrow"></span></a>
           <a class="btn" href="#picker" data-hover>Подобрать вкус</a>
         </div>
-        <div class="hero-note">18+ · заказ через официальный Telegram</div>
+        <div class="hero-note">18+ · никотиновая продукция</div>
       </div>
     </div>
     <div class="hero-bottom">
@@ -403,26 +402,26 @@
 </section>
 <div class="marquee">
   <div class="marquee-track">
-    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>ICY RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>ICY RELEASE</i> · SINCE 2018 · </span>
-    <span>SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>ICY RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>0% TOBACCO</i> · NICOTINE 12–30 MG · 7 TASTES · <i>ICY RELEASE</i> · SINCE 2018 · </span>
+    <span>SWEDISH QUALITY · <i>SLIM FORMAT</i> · ICE TASTE · SELECTED STRENGTH · <i>ICY RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>SLIM FORMAT</i> · ICE TASTE · SELECTED STRENGTH · <i>ICY RELEASE</i> · SINCE 2018 · </span>
+    <span>SWEDISH QUALITY · <i>SLIM FORMAT</i> · ICE TASTE · SELECTED STRENGTH · <i>ICY RELEASE</i> · SINCE 2018 · SWEDISH QUALITY · <i>SLIM FORMAT</i> · ICE TASTE · SELECTED STRENGTH · <i>ICY RELEASE</i> · SINCE 2018 · </span>
   </div>
 </div>
 <section id="why" class="visual-proof">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">01 / Почему KLINT</div>
-      <h2 class="section-title">Понять за 10 секунд.<br><em>Без лекции.</em></h2>
+      <h2 class="section-title">Что важно<br><em>с первого взгляда.</em></h2>
     </div>
     <div class="proof-board">
       <div class="proof-card big reveal">
         <div>
-          <div class="proof-label">ORIGINAL SWEDEN · 0% TOBACCO</div>
-          <div class="proof-title">Чистый формат.<br><span>Холодный релиз.</span><br>7 вкусов.</div>
+          <div class="proof-label">KLINT · SWEDISH QUALITY</div>
+          <div class="proof-title">Slim pouch.<br><span>Холодный вкус.</span><br>Без запаха.</div>
         </div>
         <div class="proof-mini">
-          <div class="proof-chip"><b>7</b><span>вкусов</span></div>
-          <div class="proof-chip"><b>12–30</b><span>мг</span></div>
-          <div class="proof-chip"><b>0%</b><span>табака</span></div>
+          <div class="proof-chip"><b>SLIM</b><span>пакет</span></div>
+          <div class="proof-chip"><b>ICE</b><span>профиль</span></div>
+          <div class="proof-chip"><b>18+</b><span>категория</span></div>
         </div>
       </div>
       <div class="proof-side">
@@ -441,9 +440,9 @@
       </div>
     </div>
     <div class="flow" style="margin-top:22px">
-      <div class="flow-step reveal delay-1"><i>01</i><div><strong>Выбери ощущение</strong><small>мягко · баланс · максимум холода</small></div></div>
-      <div class="flow-step reveal delay-2"><i>02</i><div><strong>Выбери вкус</strong><small>мята · яблоко · cola lime · ледяная линейка</small></div></div>
-      <div class="flow-step reveal delay-3"><i>03</i><div><strong>Закажи в Telegram</strong><small>@klint_russia · 18+ · наличие и доставка</small></div></div>
+      <div class="flow-step reveal delay-1"><i>01</i><div><strong>Выбери сценарий</strong><small>daily · вкус · крепость</small></div></div>
+      <div class="flow-step reveal delay-2"><i>02</i><div><strong>Сравни линейку</strong><small>от спокойной мяты до сильного холода</small></div></div>
+      <div class="flow-step reveal delay-3"><i>03</i><div><strong>Напиши нам</strong><small>наличие · подбор · оформление</small></div></div>
     </div>
   </div>
 </section>
@@ -454,11 +453,11 @@
       <div class="video-finish-copy reveal">
         <div class="proof-label">Шведское производство</div>
         <h3>Видео вместо длинного объяснения.</h3>
-        <p>Короткое подтверждение: бренд, продукт, производство. Дальше — сразу выбор вкуса.</p>
+        <p>Короткое видео о бренде и производстве. Без длинного текста — дальше сразу выбор линейки.</p>
         <div class="finish-points">
-          <span>оригинальный KLINT</span>
-          <span>0% табака</span>
-          <span>7 вкусов · 12–30 мг</span>
+          <span>бренд и производство</span>
+          <span>формат продукта</span>
+          <span>переход к выбору</span>
         </div>
       </div>
       <div class="finish-video-card reveal delay-1" data-hover>
@@ -475,12 +474,12 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">02 / Подбор</div>
-      <h2 class="section-title">Подбор за<br><em>3 клика.</em></h2>
+      <h2 class="section-title">Быстрый<br><em>подбор.</em></h2>
     </div>
     <div class="picker-grid">
-      <div class="picker-card reveal delay-1"><h3>На каждый день</h3><p>POLAR 12 или FREEZE 16 мг.</p><span class="tag">мягкий старт</span></div>
-      <div class="picker-card reveal delay-2"><h3>Баланс вкуса и силы</h3><p>APPLE / ARCTIC 20 мг.</p><span class="tag">золотая середина</span></div>
-      <div class="picker-card reveal delay-3"><h3>Максимальный холод</h3><p>AVALANCHE 25 или ALASKAN 30 мг.</p><span class="tag">самый холод</span></div>
+      <div class="picker-card reveal delay-1"><h3>На каждый день</h3><p>Спокойный старт без перегруза.</p><span class="tag">мягкий старт</span></div>
+      <div class="picker-card reveal delay-2"><h3>Баланс вкуса и силы</h3><p>Когда нужен вкус и заметнее ощущение.</p><span class="tag">золотая середина</span></div>
+      <div class="picker-card reveal delay-3"><h3>Максимальный холод</h3><p>Для опытных пользователей.</p><span class="tag">самый холод</span></div>
     </div>
   </div>
 </section>
@@ -497,49 +496,42 @@
         <div class="flavor-top"><div class="flavor-name">Apple Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Яблоко + мята. Свежо, ярко, без лишней кислоты.</div>
         <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Apple Mint</a>
       </article>
       <article class="flavor-card reveal delay-1" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/arctic-mint.png" alt="Arctic Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Arctic Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Холод + баланс. Универсальный daily.</div>
         <div class="flavor-meta"><span>Крепость</span><b>20 мг · 5/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Arctic Mint</a>
       </article>
       <article class="flavor-card reveal delay-2" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/avalanche-mint.png" alt="Avalanche Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Avalanche Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Плотная мята. Сильный холод.</div>
         <div class="flavor-meta"><span>Крепость</span><b>25 мг · 6/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Avalanche</a>
       </article>
       <article class="flavor-card reveal delay-2" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/cola-lime.png" alt="Cola Lime" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Cola Lime</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Cola lime. Вкуснее, чем обычная мята.</div>
         <div class="flavor-meta"><span>Крепость</span><b>16 мг · 4/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Cola Lime</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/freeze-mint.png" alt="Freeze Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Freeze Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Лёгкая свежесть на каждый день.</div>
         <div class="flavor-meta"><span>Крепость</span><b>16 мг · 4/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Freeze</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/polar-mint.png" alt="Polar Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Polar Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Мягкая база. Спокойный старт.</div>
         <div class="flavor-meta"><span>Крепость</span><b>12 мг · 3/6</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Polar</a>
       </article>
       <article class="flavor-card reveal delay-3" data-hover>
         <div class="flavor-img-wrap"><img class="flavor-img" src="img/alaskan-mint.png" alt="Alaskan Mint" loading="lazy"></div>
         <div class="flavor-top"><div class="flavor-name">Alaskan Mint</div><div class="flavor-price">550 ₽</div></div>
         <div class="flavor-desc">Максимальный холод линейки.</div>
         <div class="flavor-meta"><span>Крепость</span><b>30 мг · 7/7</b></div>
-        <a class="flavor-cta" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать Alaskan</a>
       </article>
     </div>
   </div>
@@ -548,13 +540,13 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="section-num">04 / Преимущества</div>
-      <h2 class="section-title">Коротко.<br><em>Что важно.</em></h2>
+      <h2 class="section-title">Без лишнего.<br><em>Почему берут.</em></h2>
     </div>
     <div class="ben-grid">
-      <div class="ben-card reveal delay-1"><div class="ben-icon">01</div><div class="ben-title">Ровная подача</div><div class="ben-desc">Ровнее и предсказуемее по ощущению.</div></div>
-      <div class="ben-card reveal delay-1"><div class="ben-icon">02</div><div class="ben-title">Без табака</div><div class="ben-desc">0% табака. Без дыма и запаха.</div></div>
-      <div class="ben-card reveal delay-2"><div class="ben-icon">03</div><div class="ben-title">Оригинал из Швеции</div><div class="ben-desc">Шведский бренд и оригинальная банка.</div></div>
-      <div class="ben-card reveal delay-2"><div class="ben-icon">04</div><div class="ben-title">Выбор под себя</div><div class="ben-desc">От 12 до 30 мг под свой опыт.</div></div>
+      <div class="ben-card reveal delay-1"><div class="ben-icon">01</div><div class="ben-title">Ровная подача</div><div class="ben-desc">Ощущение без лишней резкости.</div></div>
+      <div class="ben-card reveal delay-1"><div class="ben-icon">02</div><div class="ben-title">Без табака</div><div class="ben-desc">Не дымит и не оставляет запаха.</div></div>
+      <div class="ben-card reveal delay-2"><div class="ben-icon">03</div><div class="ben-title">Оригинал из Швеции</div><div class="ben-desc">Премиальная упаковка и узнаваемая линейка.</div></div>
+      <div class="ben-card reveal delay-2"><div class="ben-icon">04</div><div class="ben-title">Выбор под себя</div><div class="ben-desc">Есть мягкие и сильные варианты.</div></div>
     </div>
   </div>
 </section>
@@ -563,14 +555,14 @@
     <div class="order-panel">
       <div>
         <h2>Готов выбрать <em>свою банку?</em></h2>
-        <p>Пишешь в Telegram — получаешь наличие, подбор и оформление без формы.</p>
+        <p>Уточни наличие, выбери вариант и оформи заказ без длинных форм.</p>
         <a href="https://t.me/klint_russia" target="_blank" rel="noopener" class="btn primary" data-hover>Заказать в Telegram <span class="arrow"></span></a>
         <div class="legal-note">18+. Продукция содержит никотин и предназначена только для совершеннолетних потребителей.</div>
       </div>
       <div class="order-steps">
-        <div class="order-step"><b>01</b><span>Выбираешь ощущение: мягко / баланс / холод.</span></div>
-        <div class="order-step"><b>02</b><span>Получаешь наличие и рекомендацию.</span></div>
-        <div class="order-step"><b>03</b><span>Оформляешь заказ.</span></div>
+        <div class="order-step"><b>01</b><span>Пишешь, что хочешь по вкусу и крепости.</span></div>
+        <div class="order-step"><b>02</b><span>Получаешь короткую рекомендацию.</span></div>
+        <div class="order-step"><b>03</b><span>Подтверждаешь заказ удобным способом.</span></div>
       </div>
     </div>
   </div>
@@ -594,7 +586,7 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">KLINT<span>.</span></div>
-        <div class="foot-tag">Оригинальные шведские никотиновые паучи без табака. 18+.</div>
+        <div class="foot-tag">KLINT Russia. Только 18+.</div>
       </div>
       <div class="foot-col"><h4>Продукт</h4><ul><li><a href="#flavors" data-hover>Вкусы</a></li><li><a href="#why" data-hover>Почему</a></li><li><a href="#picker" data-hover>Подбор</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
       <div class="foot-col"><h4>Компания</h4><ul><li><a href="#why" data-hover>Почему KLINT</a></li><li><a href="#order" data-hover>Заказ</a></li><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Контакты</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
@@ -653,8 +645,8 @@ let stageVisible = 1;
 let loadedModel = null;
 function stageConfig(){
   const w = window.innerWidth;
-  if (w <= 420) return { x:.22, y:.42, scale:.46, camZ:4.55, sat:.00 };
-  if (w <= 760) return { x:.28, y:.34, scale:.50, camZ:4.48, sat:.00 };
+  if (w <= 420) return { x:.34, y:.54, scale:.43, camZ:4.65, sat:.00 };
+  if (w <= 760) return { x:.38, y:.48, scale:.47, camZ:4.58, sat:.00 };
   if (w <= 960) return { x:.58, y:.24, scale:.60, camZ:4.32, sat:.18 };
   if (w <= 1180) return { x:.70, y:.08, scale:.72, camZ:4.18, sat:.24 };
   return { x:.82, y:.03, scale:.84, camZ:4.05, sat:.34 };
