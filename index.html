@@ -524,18 +524,74 @@ document.querySelectorAll('[data-hover], .btn, .nav-links a, .flavor-card, .faq-
   el.addEventListener('mouseleave', ()=> ringEl.classList.remove('hover'));
 });
 const canvas = document.getElementById('hero-canvas');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.1;
+renderer.toneMappingExposure = 1.28;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(35, window.innerWidth/window.innerHeight, 0.1, 100);
-camera.position.set(0,0.3,4.2);
+const camera = new THREE.PerspectiveCamera(32, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0.15,0.25,4.05);
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-const can = new THREE.Group(); scene.add(can);
+const showroom = new THREE.Group(); scene.add(showroom);
+const can = new THREE.Group(); showroom.add(can);
+const halo = new THREE.Group(); showroom.add(halo);
+const satellites = [];
+let scrollProgress = 0;
+let loadedModel = null;
+
+// Cinematic showroom rings: not flashy, more like luxury product lighting.
+const ringMat = new THREE.MeshBasicMaterial({ color:0x8cff63, transparent:true, opacity:0.20, depthWrite:false, blending:THREE.AdditiveBlending });
+const cyanRingMat = new THREE.MeshBasicMaterial({ color:0x37f4d1, transparent:true, opacity:0.13, depthWrite:false, blending:THREE.AdditiveBlending });
+[
+  {r:1.72, tube:.006, x:Math.PI/2, y:0.18, z:0.03, mat:ringMat},
+  {r:2.08, tube:.004, x:Math.PI/2.6, y:-0.22, z:0.28, mat:cyanRingMat},
+  {r:1.28, tube:.005, x:Math.PI/1.9, y:0.44, z:-0.18, mat:ringMat}
+].forEach(cfg => {
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(cfg.r, cfg.tube, 10, 192), cfg.mat.clone());
+  ring.rotation.set(cfg.x,cfg.y,cfg.z);
+  halo.add(ring);
+});
+const pedestal = new THREE.Mesh(
+  new THREE.TorusGeometry(1.34, 0.012, 12, 192),
+  new THREE.MeshBasicMaterial({ color:0x37f4d1, transparent:true, opacity:0.16, depthWrite:false, blending:THREE.AdditiveBlending })
+);
+pedestal.rotation.x = Math.PI/2;
+pedestal.position.y = -0.54;
+halo.add(pedestal);
+
+// Premium release particles — controlled orbit, not random noise.
+const releaseGeo = new THREE.BufferGeometry();
+const releaseCount = 520;
+const releasePos = new Float32Array(releaseCount*3);
+const releaseSeed = [];
+for (let i=0;i<releaseCount;i++) {
+  const a = i/releaseCount * Math.PI*2;
+  const radius = 1.15 + Math.random()*1.65;
+  const h = (Math.random()-0.5)*1.45;
+  releaseSeed.push({a, radius, h, speed:0.12+Math.random()*0.24});
+  releasePos[i*3] = Math.cos(a)*radius;
+  releasePos[i*3+1] = h;
+  releasePos[i*3+2] = Math.sin(a)*radius;
+}
+releaseGeo.setAttribute('position', new THREE.BufferAttribute(releasePos,3));
+const releaseCloud = new THREE.Points(releaseGeo, new THREE.PointsMaterial({
+  color:0x8cff63, size:0.015, transparent:true, opacity:0.48, depthWrite:false, blending:THREE.AdditiveBlending
+}));
+showroom.add(releaseCloud);
+
+// Deep background dust for depth.
+const dustGeo = new THREE.BufferGeometry();
+const dustCount = 260; const dustPos = new Float32Array(dustCount*3);
+for (let i=0;i<dustCount;i++) { dustPos[i*3]=(Math.random()-0.5)*9; dustPos[i*3+1]=(Math.random()-0.5)*5.2; dustPos[i*3+2]=(Math.random()-0.5)*6-1; }
+dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos,3));
+const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color:0x9fff6d, size:0.01, transparent:true, opacity:0.55, depthWrite:false }));
+scene.add(dust);
+
 // 3D-модель шайбы (Blender .glb). Центрируем + нормализуем масштаб под сцену.
 const gltfLoader = new GLTFLoader();
 gltfLoader.load('models/shaiba.glb', (gltf) => {
@@ -543,66 +599,121 @@ gltfLoader.load('models/shaiba.glb', (gltf) => {
   const box = new THREE.Box3().setFromObject(model);
   const size = new THREE.Vector3(); box.getSize(size);
   const center = new THREE.Vector3(); box.getCenter(center);
-  model.position.sub(center);                 // центр модели в начало координат
+  model.position.sub(center);
   const maxDim = Math.max(size.x, size.y, size.z) || 1;
-  model.scale.setScalar(2.2 / maxDim);        // вписываем в ~2.2 юнита (как прежняя баночка)
-  model.traverse((o) => { if (o.isMesh && o.material) { o.material.envMapIntensity = 1.0; o.castShadow = false; } });
+  model.scale.setScalar(2.42 / maxDim);
+  model.traverse((o) => {
+    if (o.isMesh && o.material) {
+      o.castShadow = true;
+      o.receiveShadow = true;
+      o.material.envMapIntensity = 1.75;
+      if ('roughness' in o.material) o.material.roughness = Math.min(o.material.roughness ?? 0.45, 0.48);
+      if ('metalness' in o.material) o.material.metalness = Math.max(o.material.metalness ?? 0.1, 0.12);
+    }
+  });
+  loadedModel = model;
   can.add(model);
+  // Two small orbiting tins in the background create the expensive 3D-showroom feel.
+  for (let i=0;i<2;i++) {
+    const clone = model.clone(true);
+    clone.traverse((o) => {
+      if (o.isMesh && o.material) {
+        o.material = o.material.clone();
+        o.material.transparent = true;
+        o.material.opacity = 0.34;
+        o.material.envMapIntensity = 1.2;
+      }
+    });
+    clone.scale.multiplyScalar(0.38);
+    const sat = new THREE.Group();
+    sat.add(clone);
+    sat.userData = { radius:2.55 + i*0.35, phase:i*Math.PI, y:-0.10 + i*0.36, speed:0.18 + i*0.05 };
+    showroom.add(sat);
+    satellites.push(sat);
+  }
+  gsap.from(model.rotation, { y:-Math.PI*2.4, z:0.42, duration:2.4, ease:'expo.out' });
+  gsap.from(model.scale, { x:model.scale.x*0.62, y:model.scale.y*0.62, z:model.scale.z*0.62, duration:1.8, ease:'expo.out' });
 }, undefined, (err) => { console.error('GLB load error', err); });
-// --- ориентация: лицевой этикеткой к камере ---
-const LABEL_YAW = 0;        // 0 = этикетка на камеру; крутить если не та сторона
-const BASE_TILT = 0.35;     // наклон вперёд — видно лицевую сторону, а не дно
-const spin = { y: -Math.PI*1.2 };            // стартовый заезд-разворот
+
+// --- ориентация + motion profile ---
+const LABEL_YAW = 0;
+const BASE_TILT = 0.34;
+const spin = { y: -Math.PI*1.4, burst:0 };
 gsap.to(spin, { y: 0, duration: 2.0, ease:'expo.out' });
-const key = new THREE.DirectionalLight(0xffffff,1.2); key.position.set(3,4,5); scene.add(key);
-const fill = new THREE.DirectionalLight(0x7effd4,0.6); fill.position.set(-4,2,-2); scene.add(fill);
-const rim = new THREE.PointLight(0xa8ff60,1.4,8); rim.position.set(0,0,-3); scene.add(rim);
-scene.add(new THREE.AmbientLight(0x101820,0.4));
-const dustGeo = new THREE.BufferGeometry();
-const dustCount = 180; const dustPos = new Float32Array(dustCount*3);
-for (let i=0;i<dustCount;i++) { dustPos[i*3]=(Math.random()-0.5)*8; dustPos[i*3+1]=(Math.random()-0.5)*5; dustPos[i*3+2]=(Math.random()-0.5)*6-1; }
-dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos,3));
-const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color:0xa8ff60, size:0.012, transparent:true, opacity:0.6, depthWrite:false }));
-scene.add(dust);
+const key = new THREE.DirectionalLight(0xffffff,1.55); key.position.set(3.2,4.5,5.0); key.castShadow=true; scene.add(key);
+const fill = new THREE.DirectionalLight(0x37f4d1,0.74); fill.position.set(-4,2.4,-2); scene.add(fill);
+const rim = new THREE.PointLight(0xa8ff60,2.2,10); rim.position.set(0,0,-3.2); scene.add(rim);
+const iceRim = new THREE.PointLight(0x37f4d1,1.45,8); iceRim.position.set(-2.8,1.4,2.2); scene.add(iceRim);
+scene.add(new THREE.AmbientLight(0x101820,0.36));
 can.rotation.x = -0.18; can.rotation.z = 0.05;
-gsap.from(can.position, { y:-1.6, duration:1.6, ease:'expo.out' });
-gsap.from(can.scale,    { x:0.6, y:0.6, z:0.6, duration:1.6, ease:'expo.out' });
+gsap.from(showroom.position, { y:-1.4, duration:1.7, ease:'expo.out' });
+gsap.from(showroom.scale,    { x:0.64, y:0.64, z:0.64, duration:1.7, ease:'expo.out' });
 gsap.from('.nav .brand',     { y:-20, opacity:0, duration:.9, delay:.3, ease:'expo.out' });
 gsap.from('.nav-links a',    { y:-12, opacity:0, duration:.7, delay:.45, stagger:.06, ease:'expo.out' });
 gsap.from('.eyebrow',        { y:24,  opacity:0, duration:.9, delay:.5, ease:'expo.out' });
 gsap.from('.hero .h1',       { y:48,  opacity:0, duration:1.1, delay:.6, ease:'expo.out' });
 gsap.from('.lede',           { y:24,  opacity:0, duration:.9, delay:.85, ease:'expo.out' });
 gsap.from('.hero .cta-row .btn', { y:18, opacity:0, duration:.8, delay:1, stagger:.08, ease:'expo.out' });
+gsap.from('.hero-trust .trust-pill', { y:16, opacity:0, duration:.65, delay:.95, stagger:.045, ease:'expo.out' });
+gsap.from('.hero-note',      { y:12, opacity:0, duration:.7, delay:1.1, ease:'expo.out' });
 gsap.from('.hero-ghost',     { opacity:0, scale:1.15, duration:1.6, delay:.2, ease:'expo.out' });
 gsap.from('.hero-bottom > *',{ y:20, opacity:0, duration:.7, delay:1.1, stagger:.08, ease:'expo.out' });
 const ghosted = document.getElementById('heroGhost');
 const mouse = new THREE.Vector2(0,0), target = new THREE.Vector2(0,0);
 window.addEventListener('mousemove', e => { mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -((e.clientY/window.innerHeight)*2-1); });
-canvas.addEventListener('click', () => gsap.to(spin, { y: spin.y + Math.PI*2, duration:1.4, ease:'expo.out' }));
+canvas.addEventListener('click', () => {
+  gsap.to(spin, { y: spin.y + Math.PI*4, burst:1, duration:1.65, ease:'expo.out', onComplete:()=>gsap.to(spin,{burst:0,duration:.6,ease:'power2.out'}) });
+  gsap.fromTo(halo.scale, { x:1, y:1, z:1 }, { x:1.16, y:1.16, z:1.16, duration:.55, yoyo:true, repeat:1, ease:'power2.out' });
+});
 const clock = new THREE.Clock();
 function tick(){
   const t = clock.getElapsedTime();
   target.lerp(mouse, 0.06);
-  can.rotation.y = LABEL_YAW + spin.y + Math.sin(t*0.5)*0.28 + target.x*0.22;
-  can.rotation.x = BASE_TILT + target.y*0.14;
-  can.position.y = Math.sin(t*0.8)*0.04;
-  camera.position.x = target.x*0.5;
-  camera.position.y = 0.3 + target.y*0.25;
+  const autoSpin = t*0.32 + Math.sin(t*0.55)*0.20;
+  showroom.rotation.y = target.x*0.05;
+  can.rotation.y = LABEL_YAW + spin.y + autoSpin + scrollProgress*Math.PI*2.4 + target.x*0.34;
+  can.rotation.x = BASE_TILT + Math.sin(t*0.68)*0.045 + target.y*0.16;
+  can.rotation.z = 0.035 + Math.sin(t*0.42)*0.055 + scrollProgress*0.30;
+  showroom.position.y = Math.sin(t*0.78)*0.055 - scrollProgress*0.62;
+  showroom.scale.setScalar(1 - scrollProgress*0.26 + Math.sin(t*0.52)*0.012);
+  halo.rotation.y = -t*0.18 + scrollProgress*Math.PI*1.2;
+  halo.rotation.z = t*0.08;
+  halo.children.forEach((r, i) => { r.rotation.z += 0.0025*(i+1); r.material.opacity = (i===1?0.11:0.18) + Math.sin(t*1.2+i)*0.035 + spin.burst*0.18; });
+  releaseCloud.rotation.y = t*0.08 + scrollProgress*Math.PI*1.5;
+  releaseCloud.rotation.x = Math.sin(t*0.35)*0.05;
+  const pos = releaseCloud.geometry.attributes.position.array;
+  for (let i=0;i<releaseCount;i++) {
+    const seed = releaseSeed[i];
+    const a = seed.a + t*seed.speed + scrollProgress*Math.PI*0.8;
+    const pulse = Math.sin(t*1.5 + seed.a*3) * 0.08 + spin.burst*0.18;
+    const radius = seed.radius + pulse;
+    pos[i*3] = Math.cos(a)*radius;
+    pos[i*3+1] = seed.h + Math.sin(t*0.8+seed.a)*0.055;
+    pos[i*3+2] = Math.sin(a)*radius;
+  }
+  releaseCloud.geometry.attributes.position.needsUpdate = true;
+  releaseCloud.material.opacity = 0.42 + spin.burst*0.28;
+  satellites.forEach((sat, i) => {
+    const d = sat.userData;
+    const a = d.phase + t*d.speed + scrollProgress*Math.PI*1.25;
+    sat.position.set(Math.cos(a)*d.radius, d.y + Math.sin(t*.7+i)*0.08, Math.sin(a)*0.52 - 0.38);
+    sat.rotation.y = -a + Math.PI/2;
+    sat.rotation.x = BASE_TILT*0.72;
+  });
+  camera.position.x = target.x*0.46;
+  camera.position.y = 0.26 + target.y*0.24;
+  camera.position.z = 4.05 - scrollProgress*0.22;
   camera.lookAt(0,0,0);
-  dust.rotation.y = t*0.02;
-  if (ghosted) ghosted.style.transform = `translate(calc(-50% + ${target.x*-30}px), calc(-50% + ${target.y*-15}px))`;
+  dust.rotation.y = t*0.018;
+  dust.position.y = Math.sin(t*0.22)*0.05;
+  if (ghosted) ghosted.style.transform = `translate(calc(-50% + ${target.x*-34}px), calc(-50% + ${target.y*-17}px))`;
   renderer.render(scene, camera);
   requestAnimationFrame(tick);
 }
 tick();
 ScrollTrigger.create({
   trigger: '.hero', start:'top top', end:'bottom top', scrub:1,
-  onUpdate: self => {
-    const p = self.progress;
-    can.scale.setScalar(1 - p*0.4);
-    can.position.y = -p*0.8;
-    can.rotation.z = 0.05 + p*0.3;
-  }
+  onUpdate: self => { scrollProgress = self.progress; }
 });
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth/window.innerHeight;
