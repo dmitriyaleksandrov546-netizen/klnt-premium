@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 <title>KLINT — шведские никотиновые паучи без табака</title>
-<meta name="description" content="KLINT — шведские никотиновые паучи без табака. Ледяные вкусы, понятная крепость и заказ через официальный Telegram.">
+<meta name="description" content="KLINT — премиальные никпаки из Швеции. Официальный импортер в России. Без табака. Только 18+.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -49,10 +49,10 @@
   #hero-canvas.is-hidden { opacity:0 !important; pointer-events:none; }
   .hero-hud { position:relative; z-index:10; height:100%; display:grid; grid-template-rows:auto 1fr auto; padding:104px 48px 92px; }
   .hero-ghost { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-weight:800; font-size:clamp(140px,24vw,360px); line-height:.85; letter-spacing:-.05em; color:transparent; -webkit-text-stroke:1px rgba(255,255,255,.06); pointer-events:none; user-select:none; white-space:nowrap; z-index:5; }
-  .hero-copy { align-self:end; max-width:500px; z-index:11; transform:translateY(-70px); }
+  .hero-copy { align-self:end; max-width:580px; z-index:11; transform:translateY(-100px); }
   .eyebrow { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.4em; color:var(--muted); margin-bottom:18px; text-transform:uppercase; }
   .eyebrow span { color:var(--accent); }
-  .h1 { font-size:clamp(40px,5.6vw,80px); font-weight:300; line-height:.96; letter-spacing:-.03em; margin-bottom:22px; }
+  .h1 { font-size:clamp(38px,4.2vw,58px); font-weight:300; line-height:.96; letter-spacing:-.03em; margin-bottom:22px; }
   .h1 em { font-style:normal; font-weight:800; background:linear-gradient(180deg,#fff,#9aa3a0); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .lede { font-size:15px; line-height:1.6; color:var(--muted); max-width:420px; margin-bottom:24px; }
   .cta-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
@@ -249,6 +249,20 @@
   .metric { border-top:1px solid var(--line); padding-top:16px; }
   .metric b { display:block; font-size:26px; letter-spacing:-.04em; margin-bottom:4px; }
   .metric span { color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; }
+  .fact-strip { margin-top:22px; display:grid; gap:12px; position:relative; z-index:1; }
+  .fact-row { border:1px solid rgba(78,231,255,.16); border-radius:18px; padding:16px; background:rgba(5,9,13,.62); }
+  .fact-row strong { display:block; font-size:17px; margin-bottom:6px; }
+  .fact-row span { color:var(--muted2); font-size:13px; line-height:1.5; }
+  .production-list { list-style:none; display:grid; gap:12px; margin-top:18px; }
+  .production-list li { color:var(--muted2); line-height:1.5; font-size:14px; padding-left:18px; position:relative; }
+  .production-list li::before { content:''; position:absolute; left:0; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 14px rgba(78,231,255,.55); }
+  .two-action-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .action-card { border:1px solid rgba(255,255,255,.12); border-radius:28px; padding:34px; background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.014)); position:relative; overflow:hidden; }
+  .action-card::after { content:''; position:absolute; right:-90px; bottom:-120px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(78,231,255,.14), transparent 65%); pointer-events:none; }
+  .action-card h3 { font-size:clamp(28px,3vw,46px); line-height:1; letter-spacing:-.035em; margin-bottom:14px; }
+  .action-card p { color:var(--muted2); font-size:15px; line-height:1.6; margin-bottom:24px; max-width:560px; }
+  .action-card .btn { position:relative; z-index:1; }
+  @media (max-width:760px){ .two-action-grid{grid-template-columns:1fr; gap:16px;} .action-card{padding:24px 20px; border-radius:22px;} .fact-strip{margin-top:16px;} }
   .picker { background:#06080b; }
   .picker-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
   .picker-card { border:1px solid var(--line); border-radius:22px; padding:28px; background:#0a0d10; transition:.35s ease; }
@@ -273,8 +287,8 @@
   /* Responsive composition: keep product premium, but never over the text */
   @media (max-width:1180px) {
     .hero-hud { padding:96px 32px 74px; }
-    .hero-copy { max-width:455px; transform:translateY(-52px); }
-    .h1 { font-size:clamp(42px,5.1vw,66px); }
+    .hero-copy { max-width:540px; transform:translateY(-42px); }
+    .h1 { font-size:clamp(38px,4.5vw,56px); }
     .lede { max-width:390px; }
     .sticky-order { bottom:38px; }
   }
@@ -283,7 +297,7 @@
     .hero { min-height:760px; height:100svh; }
     .hero::after { background:linear-gradient(180deg, rgba(5,6,10,.20) 0%, rgba(5,6,10,.34) 38%, rgba(5,6,10,.94) 78%, #05060a 100%); }
     .hero-hud { padding:92px 32px 86px; }
-    .hero-copy { align-self:end; max-width:560px; transform:translateY(-18px); }
+    .hero-copy { align-self:end; max-width:560px; transform:translateY(-10px); }
     .hero-trust { margin:18px 0 22px; }
     .hero-bottom { display:none; }
     .marquee { margin-top:-20px; padding:15px 0; }
@@ -302,13 +316,15 @@
     .hero-copy::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 72% 10%, rgba(78,231,255,.22), transparent 38%), linear-gradient(180deg, rgba(255,255,255,.045), transparent 46%); opacity:.78; }
     .hero-copy > * { position:relative; z-index:1; }
     .eyebrow { font-size:8px; letter-spacing:.24em; margin-bottom:9px; }
-    .h1 { font-size:clamp(34px,10.6vw,44px); line-height:.93; margin-bottom:10px; color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.9); }
+    .h1 { font-size:clamp(28px,8.6vw,40px); line-height:.95; margin-bottom:10px; color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.9); }
     .h1 em { background:none; color:#f7f9f6; -webkit-text-fill-color:#f7f9f6; text-shadow:0 10px 34px rgba(0,0,0,.9); }
-    .lede { font-size:12px; line-height:1.42; max-width:290px; margin-bottom:13px; color:#c3ccc9; text-shadow:0 8px 22px rgba(0,0,0,.9); }
+    .lede { font-size:12px; line-height:1.38; max-width:300px; margin-bottom:13px; color:#c3ccc9; text-shadow:0 8px 22px rgba(0,0,0,.9); }
     .cta-row { gap:9px; }
     .btn { padding:12px 14px; font-size:9px; letter-spacing:.10em; }
     .hero .cta-row .btn:not(.primary) { display:none; }
-    .hero-trust { display:none; }
+    .hero-trust { display:flex; margin:8px 0 12px; gap:6px; }
+    .hero-trust .trust-pill { font-size:7px; letter-spacing:.10em; padding:6px 8px; }
+    .hero-trust .trust-pill + .trust-pill { display:none; }
     .hero-note { display:none; }
     .marquee { margin-top:-18px; padding:13px 0; }
     .marquee-track { font-size:10px; letter-spacing:.22em; }
@@ -347,7 +363,7 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <canvas id="hero-canvas"></canvas>
-<div class="sticky-order"><span><b>KLINT 18+</b> · быстрое оформление</span><a class="mini-btn" href="https://t.me/klint_russia" target="_blank" rel="noopener">Заказать</a></div>
+<div class="sticky-order"><span><b>KLINT 18+</b> · официальный импортер в России</span><a class="mini-btn" href="#retail">Розница</a></div>
 <div class="age-gate" id="ageGate" aria-hidden="true">
   <div class="age-box">
     <h3>Вам исполнилось 18 лет?</h3>
@@ -364,9 +380,10 @@
     <a href="#hero" data-hover>Главная</a>
     <a href="#why" data-hover>Почему</a>
     <a href="#video-finish" data-hover>Видео</a>
-    <a href="#picker" data-hover>Подбор</a>
+    <a href="#why" data-hover>Подбор</a>
     <a href="#flavors" data-hover>Вкусы</a>
-    <a href="#order" data-hover>Заказ</a>
+    <a href="#retail" data-hover>Розница</a>
+    <a href="#cooperate" data-hover>Опт</a>
     <a href="#faq" data-hover>FAQ</a>
   </div>
 </nav>
@@ -376,13 +393,13 @@
     <div style="display:grid;align-items:end">
       <div class="hero-ghost" id="heroGhost">KLINT</div>
       <div class="hero-copy">
-        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Ice taste&nbsp;·&nbsp;slim format</div>
-        <h1 class="h1">Шведский <em>стандарт</em><br>без табака.</h1>
-        <p class="lede">Ледяной вкус, slim-формат и понятная крепость.</p>
-        <div class="hero-trust"><span class="trust-pill"><i>slim</i> формат</span><span class="trust-pill"><i>ice</i> taste</span><span class="trust-pill">Swedish quality</span></div>
+        <div class="eyebrow"><span>●</span>&nbsp;&nbsp;Официальный импортер в России</div>
+        <h1 class="h1">KLINT — премиальные <em>никпаки</em><br>шведского качества из Швеции. Теперь в России.</h1>
+        <p class="lede">Без табака. «Качество — это не выбор, это привычка.»</p>
+        <div class="hero-trust"><span class="trust-pill"><i>интересный факт</i> создатель никпаков участвовал в разработке KLINT</span><span class="trust-pill">Swedish quality</span></div>
         <div class="cta-row">
-          <a class="btn primary" href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Заказать в Telegram <span class="arrow"></span></a>
-          <a class="btn" href="#picker" data-hover>Подобрать вкус</a>
+          <a class="btn primary" href="#cooperate" data-hover>Сотрудничать <span class="arrow"></span></a>
+          <a class="btn" href="#retail" data-hover>Купить в розницу</a>
         </div>
         <div class="hero-note">18+ · никотиновая продукция</div>
       </div>
@@ -390,7 +407,7 @@
     <div class="hero-bottom">
       <div>Original Swedish brand</div>
       <div class="scroll-hint">Посмотри линейку &nbsp;<span class="bar"></span></div>
-      <div>Order · @klint_russia</div>
+      <div>Официальный импортер в России</div>
     </div>
   </div>
 </section>
@@ -403,13 +420,13 @@
 <section id="why" class="visual-proof">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">01 / Почему KLINT</div>
-      <h2 class="section-title">Линейка<br><em>без лишних слов.</em></h2>
+      <div class="section-num">01 / Подбор</div>
+      <h2 class="section-title">Выбери не банку.<br><em>Выбери ощущение.</em></h2>
     </div>
     <div class="proof-board">
       <div class="proof-card big reveal">
         <div>
-          <div class="proof-label">Быстрая навигация</div>
+          <div class="proof-label">Быстрый ориентир</div>
           <div class="proof-title">Мягче.<br><span>Баланс.</span><br>Сильнее.</div>
         </div>
         <div class="proof-mini">
@@ -417,11 +434,14 @@
           <div class="proof-chip"><b>20</b><span>баланс</span></div>
           <div class="proof-chip"><b>25+</b><span>сильнее</span></div>
         </div>
+        <div class="fact-strip">
+          <div class="fact-row"><strong>Без дыма и запаха</strong><span>Используется аккуратно и незаметно.</span></div>
+          <div class="fact-row"><strong>😍 Контроль от начала до конца</strong><span>Ровный никотин-релиз помогает избежать резкого пика и быстрого спада. Ощущение остаётся управляемым.</span></div>
+        </div>
       </div>
       <div class="proof-side">
         <div class="proof-card proof-visual reveal delay-1">
           <div class="proof-product-stack" aria-hidden="true"><img src="img/polar-mint.png" alt=""><img src="img/arctic-mint.png" alt=""><img src="img/apple-mint.png" alt=""></div>
-        </div>
         </div>
       </div>
     </div>
@@ -432,9 +452,16 @@
   <div class="wrap">
     <div class="video-finish-grid">
       <div class="video-finish-copy reveal">
-        <div class="proof-label">Шведское производство</div>
-        <h3>Видео: производство.</h3>
-        <p>Коротко о бренде и продукте — без лишнего текста.</p>
+        <div class="proof-label">Производство</div>
+        <h3>Как производится KLINT.</h3>
+        <p>KLINT производится на современном предприятии Habit Factory: от сырья до готовой банки каждый этап проходит контроль.</p>
+        <ul class="production-list">
+          <li>Контроль сырья, состава и готовой партии</li>
+          <li>Белые slim-пакеты без табачного листа</li>
+          <li>Ровная влажность, чистая ароматика и стабильная подача</li>
+          <li>Запатентованная уникальная технология</li>
+          <li>В формировании рецептуры участвовал создатель никпаков, который положил начало бренду EPOK в 2014 году.</li>
+        </ul>
       </div>
       <div class="finish-video-card reveal delay-1" data-hover>
         <div class="video-wrap">
@@ -446,25 +473,11 @@
   </div>
 </section>
 
-<section id="picker" class="picker">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-num">02 / Подбор</div>
-      <h2 class="section-title">Быстрый<br><em>подбор.</em></h2>
-    </div>
-    <div class="picker-grid">
-      <div class="picker-card reveal delay-1"><h3>На каждый день</h3><p>Спокойный старт без перегруза.</p><span class="tag">мягкий старт</span></div>
-      <div class="picker-card reveal delay-2"><h3>Баланс вкуса и силы</h3><p>Когда нужен вкус и заметнее ощущение.</p><span class="tag">золотая середина</span></div>
-      <div class="picker-card reveal delay-3"><h3>Максимальный холод</h3><p>Для опытных пользователей.</p><span class="tag">самый холод</span></div>
-    </div>
-  </div>
-</section>
-
 <section id="flavors" class="flavors">
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-num">03 / Линейка</div>
-      <h2 class="section-title">Семь вкусов.<br><em>Под разные сценарии.</em></h2>
+      <div class="section-num">02 / Линейка</div>
+      <h2 class="section-title">Семь вкусов.<br><em>Разный характер.</em></h2>
     </div>
     <div class="flavor-grid">
       <article class="flavor-card reveal delay-1" data-hover>
@@ -512,16 +525,35 @@
     </div>
   </div>
 </section>
+<section id="retail" class="order-block">
+  <div class="wrap">
+    <div class="two-action-grid">
+      <div class="action-card reveal">
+        <div class="proof-label">Купить в розницу</div>
+        <h3>KLINT GAME</h3>
+        <p>Для розничной покупки и участия в игровой механике переходи в официальный бот KLINT GAME.</p>
+        <a href="https://t.me/klint_gamebot" target="_blank" rel="noopener" class="btn primary" data-hover>Открыть @klint_gamebot <span class="arrow"></span></a>
+      </div>
+      <div class="action-card reveal delay-1" id="cooperate">
+        <div class="proof-label">B2B</div>
+        <h3>Открыты к сотрудничеству.</h3>
+        <p>Ищем дистрибьюторов, региональных партнёров и точки продаж. KLINT — официальный импортёр в России.</p>
+        <a href="https://t.me/klint_russia" target="_blank" rel="noopener" class="btn" data-hover>Связаться по сотрудничеству <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="order" class="order-block">
   <div class="wrap">
     <div class="order-panel order-panel-compact">
       <div>
         <div class="proof-label">Финальный шаг</div>
-        <h2>Написать <em>в KLINT.</em></h2>
-        <p>Наличие, подбор и оформление — в одном чате.</p>
+        <h2>Готов <em>попробовать?</em></h2>
+        <p>Розница — через KLINT GAME. Партнёрство и поставки — через официальный Telegram KLINT.</p>
       </div>
       <div class="order-action">
-        <a href="https://t.me/klint_russia" target="_blank" rel="noopener" class="btn primary" data-hover>Открыть Telegram <span class="arrow"></span></a>
+        <a href="https://t.me/klint_gamebot" target="_blank" rel="noopener" class="btn primary" data-hover>Купить в розницу <span class="arrow"></span></a>
+        <a href="https://t.me/klint_russia" target="_blank" rel="noopener" class="btn" data-hover>Сотрудничать</a>
         <div class="legal-note">18+. Содержит никотин.</div>
       </div>
     </div>
@@ -535,7 +567,7 @@
     </div>
     <div class="faq-list">
       <div class="faq-item reveal" data-hover><div class="faq-q">Какую крепость выбрать?<span class="faq-toggle"></span></div><div class="faq-a">12–16 мг — мягче. 20 мг — баланс. 25–30 мг — сильнее.</div></div>
-      <div class="faq-item reveal" data-hover><div class="faq-q">Сколько работает один пауч?<span class="faq-toggle"></span></div><div class="faq-a">Обычно 30–60 минут. Чем выше крепость, тем заметнее ощущение.</div></div>
+      <div class="faq-item reveal" data-hover><div class="faq-q">Сколько работает один пауч?<span class="faq-toggle"></span></div><div class="faq-a">Обычно 30–60 минут действия. Чем выше крепость, тем заметнее ощущение.</div></div>
     </div>
   </div>
 </section>
@@ -544,11 +576,11 @@
     <div class="foot-grid">
       <div>
         <div class="foot-brand">KLINT<span>.</span></div>
-        <div class="foot-tag">KLINT Russia. Только 18+.</div>
+        <div class="foot-tag">Официальный импортер KLINT в России. Только 18+.</div>
       </div>
-      <div class="foot-col"><h4>Продукт</h4><ul><li><a href="#flavors" data-hover>Вкусы</a></li><li><a href="#why" data-hover>Почему</a></li><li><a href="#picker" data-hover>Подбор</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
-      <div class="foot-col"><h4>Компания</h4><ul><li><a href="#why" data-hover>Почему KLINT</a></li><li><a href="#order" data-hover>Заказ</a></li><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Контакты</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
-      <div class="foot-col"><h4>Заказ</h4><ul><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Telegram: @klint_russia</a></li><li><a href="#picker" data-hover>Подобрать вкус</a></li><li><a href="#faq" data-hover>Вопросы 18+</a></li></ul></div>
+      <div class="foot-col"><h4>Продукт</h4><ul><li><a href="#flavors" data-hover>Вкусы</a></li><li><a href="#why" data-hover>Подбор</a></li><li><a href="#video-finish" data-hover>Производство</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
+      <div class="foot-col"><h4>Компания</h4><ul><li><a href="#cooperate" data-hover>Сотрудничество</a></li><li><a href="#retail" data-hover>Купить в розницу</a></li><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Контакты</a></li><li><a href="#faq" data-hover>FAQ</a></li></ul></div>
+      <div class="foot-col"><h4>Контакты</h4><ul><li><a href="https://t.me/klint_gamebot" target="_blank" rel="noopener" data-hover>Розница: @klint_gamebot</a></li><li><a href="https://t.me/klint_russia" target="_blank" rel="noopener" data-hover>Партнёрам: @klint_russia</a></li><li><a href="#faq" data-hover>Вопросы 18+</a></li></ul></div>
     </div>
     <div class="foot-bottom">
       <div>© 2026 KLINT Russia · Все права защищены</div>
